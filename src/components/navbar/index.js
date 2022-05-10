@@ -2,11 +2,19 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="flex bg-white rounded-md h-16 shadow-all">
+    <div className="flex items-center justify-between px-4 bg-white rounded-md h-16 shadow-all">
       {/* Left side */}
-      <div></div>
+      <div>
+        a
+      </div>
       {/* Right side */}
-      <div></div>
+      <div>
+        <div>
+        <p className="text-sm font-medium text-black font-sans leading-3">
+          Caner Al
+        </p>
+        </div>
+      </div>
     </div>
   );
 };
