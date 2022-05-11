@@ -1,12 +1,12 @@
 const initialState = {
-  data: {username:'caneral', name:'caner', email: "asdasd@asdasd.com"},
+  data: {},
   loading: false,
   error: "",
 };
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case "EXAMPLE_CASE":
+    case "USER_LOGIN":
       return { ...state, data: action.data };
 
     default:

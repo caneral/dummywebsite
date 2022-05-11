@@ -1,16 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillApple } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Dropdown from "../dropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { Modal, ModalBody, ModalHeader } from "../modal";
+import VerticalForm from "../form/VerticalForm";
+import { userLogin } from "../../redux/actions/auth";
 
 const Navbar = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const formData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    dispatch(userLogin(formData));
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const dispatch = useDispatch();
   const store = useSelector((state) => state.auth);
   const userInfo = store.data;
-
   const { t } = useTranslation();
 
   return (
@@ -49,11 +76,11 @@ const Navbar = () => {
           </div>
 
           {/* UserInfo */}
-          {userInfo.length !== 0 ? (
+          {Object.keys(userInfo).length !== 0 ? (
             <button className="flex items-center space-x-3 hover:bg-gray-200 hover:rounded-md p-2">
               <div className="text-right">
                 <p className="text-sm font-medium text-black-base font-sans leading-3">
-                  {userInfo.username}
+                  {userInfo.name}
                 </p>
                 <p className="text-xs float-right font-sans font-normal text-black-base">
                   {userInfo.email}
@@ -65,8 +92,51 @@ const Navbar = () => {
               </div>
             </button>
           ) : (
-            <div className="py-2 px-4 bg-green-300 text-white font-medium rounded-3xl">
-              Login
+            <div>
+              <button
+                onClick={handleOpen}
+                className="py-2 px-4 bg-green-300 text-white font-medium rounded-3xl flex w-28 justify-center hover:bg-green-200"
+              >
+                Login
+              </button>
+              <Modal isOpen={open} toggle={handleClose}>
+                <ModalBody>
+                  <div className="flex gap-2">
+                    <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+                      <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-2 ">
+                        <VerticalForm
+                          errors={errors.name}
+                          title={t("Name")}
+                          type={"text"}
+                          hookform={{ ...register("name", { required: true }) }}
+                        />
+                        <VerticalForm
+                          errors={errors.email}
+                          title={t("Email")}
+                          hookform={{
+                            ...register("email", {
+                              required: true,
+                              pattern:
+                                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            }),
+                          }}
+                        />
+                      </div>
+                      <VerticalForm
+                        errors={errors.password}
+                        title={t("Password")}
+                        type={"password"}
+                        hookform={{
+                          ...register("password", { required: true }),
+                        }}
+                      />
+                      <button className="bg-green-300 px-4 py-2 w-full rounded-md text-white font-medium mt-2">
+                        {t("Login")}
+                      </button>
+                    </form>
+                  </div>
+                </ModalBody>
+              </Modal>
             </div>
           )}
         </div>

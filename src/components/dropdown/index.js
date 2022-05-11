@@ -9,7 +9,6 @@ const Dropdown = () => {
   const store = useSelector((state) => state.localization);
 
   const language = store.data;
-  console.log(language);
   const { t } = useTranslation();
   const chngeLanguage = (e) => {
     i18next.changeLanguage(e.target.value);
