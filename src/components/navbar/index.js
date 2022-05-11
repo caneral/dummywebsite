@@ -3,12 +3,10 @@ import { AiFillApple } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Dropdown from "../dropdown";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
   const store = useSelector((state) => state.auth);
-  console.log(store.data);
   const userInfo = store.data;
 
   return (

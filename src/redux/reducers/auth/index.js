@@ -1,5 +1,5 @@
 const initialState = {
-  data: [{username:'caneral', password: "adasd"}],
+  data: {name:'caner', email: "asdasd@asdasd.com"},
   loading: false,
   error: "",
 };
