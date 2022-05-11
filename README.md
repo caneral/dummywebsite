@@ -32,18 +32,6 @@ yarn start
 ```
   
 
-# Or if you use Yarn:
-
-yarn
-
-# and
-
-yarn start
-
-```
-
-  
-  
   
 
 ## What Does It Contain?
