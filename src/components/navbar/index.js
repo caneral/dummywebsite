@@ -4,7 +4,7 @@ import { BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Dropdown from "../dropdown";
 import { useSelector } from "react-redux";
-
+import { AiOutlineUser } from "react-icons/ai";
 const Navbar = () => {
   const store = useSelector((state) => state.auth);
   const userInfo = store.data;
@@ -18,9 +18,13 @@ const Navbar = () => {
       </div>
       {/* Right side */}
       <div className="w-full hidden md:block">
-        <div className="flex items-center gap-4 justify-around">
+        <div className="flex items-center gap-4 justify-between">
           <div>
             <ul className="flex items-center gap-3">
+              <li>
+                {/* Localization */}
+                <Dropdown />
+              </li>
               <li>
                 <Link
                   to="/"
@@ -37,20 +41,25 @@ const Navbar = () => {
                   İletişim
                 </Link>
               </li>
-              <li>
-                {/* Localization */}
-                <Dropdown />
-              </li>
             </ul>
           </div>
 
           {/* UserInfo */}
           {userInfo.length !== 0 ? (
-            <div>
-              <p className="text-sm font-medium text-black font-sans leading-3">
-                Caner Al
-              </p>
-            </div>
+            <button className="flex items-center space-x-3 hover:bg-gray-200 hover:rounded-md p-2">
+              <div className="text-right">
+                <p className="text-sm font-medium text-black-base font-sans leading-3">
+                  {userInfo.username}
+                </p>
+                <p className="text-xs float-right font-sans font-normal text-black-base">
+                  {userInfo.email}
+                </p>
+              </div>
+              <div className="relative">
+                <AiOutlineUser className="rounded-2xl bg-gray-200" size={36} />
+                <span className="bg-green-500 w-3 h-3 absolute rounded-lg  bottom-0 right-0 border-white border-2" />
+              </div>
+            </button>
           ) : (
             <div className="py-2 px-4 bg-green-300 text-white font-medium rounded-3xl">
               Login
