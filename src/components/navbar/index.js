@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { AiFillApple } from "react-icons/ai";
-import { BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Dropdown from "../dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { Modal, ModalBody, ModalHeader } from "../modal";
 import VerticalForm from "../form/VerticalForm";
 import { userLogin, userLogout } from "../../redux/actions/auth";
 import { useLocation } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import HamburgerMenu from "../hamburger-menu";
+import LoginModal from "../../pages/login-modal";
 
 const Navbar = () => {
   const {
@@ -147,54 +147,20 @@ const Navbar = () => {
               >
                 {t("Login")}
               </button>
-              <Modal isOpen={open} toggle={handleClose}>
-                <ModalBody>
-                  <div className="flex gap-2">
-                    <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
-                      <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-2 ">
-                        <VerticalForm
-                          errors={errors.name}
-                          title={t("Name")}
-                          type={"text"}
-                          hookform={{ ...register("name", { required: true }) }}
-                        />
-                        <VerticalForm
-                          errors={errors.email}
-                          title={t("Email")}
-                          hookform={{
-                            ...register("email", {
-                              required: true,
-                              pattern:
-                                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                            }),
-                          }}
-                        />
-                      </div>
-                      <VerticalForm
-                        errors={errors.password}
-                        title={t("Password")}
-                        type={"password"}
-                        hookform={{
-                          ...register("password", { required: true }),
-                        }}
-                      />
-                      <button className="bg-green-300 px-4 py-2 w-full rounded-md text-white font-medium mt-2">
-                        {t("Login")}
-                      </button>
-                    </form>
-                  </div>
-                </ModalBody>
-              </Modal>
+              <LoginModal
+                open={open}
+                handleClose={handleClose}
+                handleSubmit={handleSubmit}
+                onSubmit={onSubmit}
+                errors={errors}
+                register={register}
+              />
             </div>
           )}
         </div>
       </div>
       {/* Hamburger Menu */}
-      <div className="md:hidden">
-        <button>
-          <BiMenu size={32} />
-        </button>
-      </div>
+      <HamburgerMenu />
     </div>
   );
 };
