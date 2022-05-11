@@ -6,20 +6,19 @@ import Label from "../../components/form/label";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-const countryList = [
-  { value: "TR", label: "Turkey" },
-  { value: "US", label: "United States of America" },
-  { value: "GB", label: "United Kingdom" },
-  { value: "DE", label: "Germany" },
-  { value: "SE", label: "Sweden" },
-  { value: "KE", label: "Kenya" },
-  { value: "BR", label: "Brazil" },
-  { value: "ZW", label: "Zimbabwe" },
-];
-
 const ContactUs = () => {
   const { t } = useTranslation();
 
+  const countryList = [
+    { value: "TR", label: t("Turkey") },
+    { value: "US", label: t("United_States_of_America") },
+    { value: "GB", label: t("United_Kingdom") },
+    { value: "DE", label: t("Germany") },
+    { value: "SE", label: t("Sweden") },
+    { value: "KE", label: t("Kenya") },
+    { value: "BR", label: t("Brazil") },
+    { value: "ZW", label: t("Zimbabwe") },
+  ];
   const store = useSelector((state) => state.auth);
   const userInfo = store.data;
   const {
@@ -32,9 +31,8 @@ const ContactUs = () => {
   } = useForm({ mode: "onBlur" });
   useEffect(() => {
     if (userInfo) {
-      setValue("name", userInfo.name)
-      setValue("email", userInfo.email)
-
+      setValue("name", userInfo.name);
+      setValue("email", userInfo.email);
     }
   }, [userInfo]);
   const onSubmit = (data) => {
