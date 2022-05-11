@@ -5,7 +5,7 @@
 
 It is a dummy web application developed with ReactJS.
 
-[**DEMO**](https://.vercel.app/)
+[**DEMO**](https://dummywebsite-two.vercel.app/)
 
 ## Installation
 
