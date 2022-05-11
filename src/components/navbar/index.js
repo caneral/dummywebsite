@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { Modal, ModalBody, ModalHeader } from "../modal";
 import VerticalForm from "../form/VerticalForm";
 import { userLogin } from "../../redux/actions/auth";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const {
@@ -30,6 +31,9 @@ const Navbar = () => {
     dispatch(userLogin(formData));
   };
 
+  const location = useLocation();
+  const pageName = location.pathname.replace("/", "").toUpperCase();
+
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -45,7 +49,10 @@ const Navbar = () => {
       {/* Left side */}
       <div className="flex items-center gap-2 w-full">
         <AiFillApple size={32} />
-        <p className="text-lg font-medium">DummyApple</p>
+        <p className="text-lg font-medium">
+          {" "}
+          {location.pathname === "/" ? "DummyApple" : pageName}
+        </p>
       </div>
       {/* Right side */}
       <div className="w-full hidden md:block">
