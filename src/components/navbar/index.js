@@ -67,7 +67,7 @@ const Navbar = () => {
         <AiFillApple size={32} />
         <p className="text-lg font-medium">
           {" "}
-          {location.pathname === "/" ? "DummyApple" : pageName}
+          {location.pathname === "/" ? "DummyApple" : t(pageName)}
         </p>
       </div>
       {/* Right side */}
