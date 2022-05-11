@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../input";
 import Label from "../label";
+import { useTranslation } from "react-i18next";
 
 const VerticalForm = ({
   hookform,
@@ -10,6 +11,8 @@ const VerticalForm = ({
   type,
   defaultValue,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col">
       <Label labelName={title} />
@@ -20,7 +23,9 @@ const VerticalForm = ({
         defaultValue={defaultValue}
       />
       {errors && errors.type === "required" && (
-        <span className="text-red-600 text-sm">This field is required</span>
+        <span className="text-red-600 text-sm">
+          {t("This_field_is_required")}
+        </span>
       )}
       {errors && errors.type === "pattern" && (
         <span className="text-red-600 text-sm">Invalid e-mail address</span>

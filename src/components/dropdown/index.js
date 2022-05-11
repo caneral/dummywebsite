@@ -13,8 +13,8 @@ const Dropdown = () => {
         onChange={(e) => i18next.changeLanguage(e.target.value)}
         className="py-2 px-4 bg-red-500 text-white rounded-3xl outline-none"
       >
-        <option value={"tr"}>{t("Turkish")}</option>
         <option value={"en"}>{t("English")}</option>
+        <option value={"tr"}>{t("Turkish")}</option>
       </select>
     </form>
   );

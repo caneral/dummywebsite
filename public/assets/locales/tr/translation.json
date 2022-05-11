@@ -8,5 +8,9 @@
     "PhoneNumber": "Telefon Numarası",
     "Country": "Ülke",
     "Message": "Mesaj",
-    "Send": "Gönder"
+    "Send": "Gönder",
+    "HowCanWeHelp?": "Nasıl Yardımcı Olabiliriz?",
+    "This_field_is_required": "Bu alan zorunludur",
+    "Select_Country": "Ülke Seçiniz"
+
 }

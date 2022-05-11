@@ -44,8 +44,8 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
-      <h1 className="font-bold text-2xl my-2">ContactUs</h1>
+    <div className="min-h-[75vh] flex flex-col items-center justify-center">
+      <h1 className="font-bold text-2xl my-2">{t("HowCanWeHelp?")}</h1>
       <div className="flex gap-2">
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-2 ">
@@ -82,12 +82,12 @@ const ContactUs = () => {
                 defaultValue=""
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <Select {...field} className="pt-1" options={countryList} />
+                  <Select {...field} className="pt-1" options={countryList} placeholder={t("Select_Country")} />
                 )}
               />
               {errors.country && (
                 <span className="text-red-600 text-sm">
-                  This field is required
+                  {t("This_field_is_required")}
                 </span>
               )}
             </div>
@@ -101,7 +101,7 @@ const ContactUs = () => {
             />
             {errors.text && (
               <span className="text-red-600 text-sm">
-                This field is required
+                {t("This_field_is_required")}
               </span>
             )}
           </div>
@@ -109,9 +109,6 @@ const ContactUs = () => {
             {t("Send")}
           </button>
         </form>
-        <div className="w-full flex justify-center">
-          <h2 className="font-medium text-3xl">How Can We Help?</h2>
-        </div>
       </div>
     </div>
   );

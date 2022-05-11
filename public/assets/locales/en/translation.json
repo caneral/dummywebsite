@@ -8,5 +8,8 @@
     "PhoneNumber": "Phone Number",
     "Country": "Country",
     "Message": "Message",
-    "Send": "Send"
+    "Send": "Send",
+    "HowCanWeHelp?": "How Can We Help?",
+    "This_field_is_required": "This field is required",
+    "Select_Country": "Select Country"
 }
