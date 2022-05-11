@@ -5,9 +5,14 @@ import { Link } from "react-router-dom";
 import Dropdown from "../dropdown";
 import { useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
+
+
 const Navbar = () => {
   const store = useSelector((state) => state.auth);
   const userInfo = store.data;
+
+  const { t } = useTranslation();
 
   return (
     <div className="flex items-center justify-between px-4 bg-white rounded-md h-16 shadow-all">
@@ -30,7 +35,7 @@ const Navbar = () => {
                   to="/"
                   className="py-2 px-4 bg-black text-white rounded-3xl"
                 >
-                  Anasayfa
+                  {t('Homepage')}
                 </Link>
               </li>
               <li>
@@ -38,7 +43,7 @@ const Navbar = () => {
                   to="/contact"
                   className="py-2 px-4 bg-black text-white rounded-3xl"
                 >
-                  İletişim
+                  {t('Contact')}
                 </Link>
               </li>
             </ul>

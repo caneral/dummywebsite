@@ -4,6 +4,7 @@ import VerticalForm from "../../components/form/VerticalForm";
 import Select from "react-select";
 import Label from "../../components/form/label";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const countryList = [
   { value: "TR", label: "Turkey" },
@@ -17,6 +18,8 @@ const countryList = [
 ];
 
 const ContactUs = () => {
+  const { t } = useTranslation();
+
   const store = useSelector((state) => state.auth);
   const userInfo = store.data;
 
@@ -48,14 +51,14 @@ const ContactUs = () => {
           <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-2 ">
             <VerticalForm
               errors={errors.name}
-              title="Name"
+              title={t("Name")}
               defaultValue={userInfo?.name}
               type={"text"}
               hookform={{ ...register("name", { required: true }) }}
             />
             <VerticalForm
               errors={errors.email}
-              title="Email"
+              title={t("Email")}
               defaultValue={userInfo?.email}
               hookform={{
                 ...register("email", {
@@ -67,12 +70,12 @@ const ContactUs = () => {
             />
             <VerticalForm
               errors={errors.phoneNumber}
-              title="Phone Number"
+              title={t("PhoneNumber")}
               type={"number"}
               hookform={{ ...register("phoneNumber", { required: true }) }}
             />
             <div>
-              <Label labelName={"Country"} />
+              <Label labelName={t("Country")} />
               <Controller
                 name="country"
                 control={control}
@@ -90,7 +93,7 @@ const ContactUs = () => {
             </div>
           </div>
           <div className="flex flex-col my-2">
-            <Label labelName={"Message"} />
+            <Label labelName={t("Message")} />
             <textarea
               rows={4}
               className="border-2 rounded-md outline-none resize-none px-2"
@@ -103,7 +106,7 @@ const ContactUs = () => {
             )}
           </div>
           <button className="bg-green-300 px-4 py-1 w-full rounded-md text-white font-medium my-4">
-            Send
+            {t("Send")}
           </button>
         </form>
         <div className="w-full flex justify-center">
