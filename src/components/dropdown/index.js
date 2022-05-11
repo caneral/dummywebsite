@@ -21,7 +21,7 @@ const Dropdown = () => {
       <select
         defaultValue={language}
         onChange={(e) => chngeLanguage(e)}
-        className="py-2 px-4 bg-red-500 text-white rounded-3xl outline-none"
+        className="flex py-2 px-3 w-28 justify-center bg-red-500 text-white rounded-3xl outline-none"
       >
         <option value={"en"}>{t("English")}</option>
         <option value={"tr"}>{t("Turkish")}</option>

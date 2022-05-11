@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 
-
 const Navbar = () => {
   const store = useSelector((state) => state.auth);
   const userInfo = store.data;
@@ -15,7 +14,7 @@ const Navbar = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex items-center justify-between px-4 bg-white rounded-md h-16 shadow-all">
+    <div className="flex items-center justify-between px-4 bg-white rounded-md h-16 shadow-all gap-4">
       {/* Left side */}
       <div className="flex items-center gap-2 w-full">
         <AiFillApple size={32} />
@@ -33,17 +32,17 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/"
-                  className="py-2 px-4 bg-black text-white rounded-3xl"
+                  className="flex py-2 px-3 w-28 justify-center bg-black text-white rounded-3xl"
                 >
-                  {t('Homepage')}
+                  {t("Homepage")}
                 </Link>
               </li>
               <li>
                 <Link
                   to="/contact"
-                  className="py-2 px-4 bg-black text-white rounded-3xl"
+                  className="flex py-2 px-3 w-28 justify-center bg-black text-white rounded-3xl"
                 >
-                  {t('Contact')}
+                  {t("Contact")}
                 </Link>
               </li>
             </ul>
