@@ -1,16 +1,26 @@
 import React from "react";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "../../redux/actions/localization";
 
 const Dropdown = () => {
+  const dispatch = useDispatch();
+  const store = useSelector((state) => state.localization);
+
+  const language = store.data;
+  console.log(language);
   const { t } = useTranslation();
+  const chngeLanguage = (e) => {
+    i18next.changeLanguage(e.target.value);
+    dispatch(setLanguage(e.target.value));
+  };
 
   return (
     <form>
       <select
-        onChange={(e) => i18next.changeLanguage(e.target.value)}
+        defaultValue={language}
+        onChange={(e) => chngeLanguage(e)}
         className="py-2 px-4 bg-red-500 text-white rounded-3xl outline-none"
       >
         <option value={"en"}>{t("English")}</option>
