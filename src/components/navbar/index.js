@@ -9,15 +9,15 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { Modal, ModalBody, ModalHeader } from "../modal";
 import VerticalForm from "../form/VerticalForm";
-import { userLogin } from "../../redux/actions/auth";
+import { userLogin, userLogout } from "../../redux/actions/auth";
 import { useLocation } from "react-router-dom";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const Navbar = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    control,
     formState: { errors },
   } = useForm();
 
@@ -29,6 +29,22 @@ const Navbar = () => {
     };
 
     dispatch(userLogin(formData));
+    handleClose();
+  };
+
+  const logout = () => {
+    console.log("tıklandı");
+    dispatch(userLogout());
+    handleCloseMenu();
+  };
+
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const handleMenu = (event) => {
+    setOpenMenu(event.currentTarget);
+  };
+  const handleCloseMenu = (event) => {
+    setOpenMenu(null);
   };
 
   const location = useLocation();
@@ -84,20 +100,45 @@ const Navbar = () => {
 
           {/* UserInfo */}
           {Object.keys(userInfo).length !== 0 ? (
-            <button className="flex items-center space-x-3 hover:bg-gray-200 hover:rounded-md p-2">
-              <div className="text-right">
-                <p className="text-sm font-medium text-black-base font-sans leading-3">
-                  {userInfo.name}
-                </p>
-                <p className="text-xs float-right font-sans font-normal text-black-base">
-                  {userInfo.email}
-                </p>
-              </div>
-              <div className="relative">
-                <AiOutlineUser className="rounded-2xl bg-gray-200" size={36} />
-                <span className="bg-green-500 w-3 h-3 absolute rounded-lg  bottom-0 right-0 border-white border-2" />
-              </div>
-            </button>
+            <div>
+              <button
+                onClick={(event) => handleMenu(event)}
+                className="flex items-center space-x-3 hover:bg-gray-200 hover:rounded-md p-2"
+              >
+                <div className="text-right">
+                  <p className="text-sm font-medium text-black-base font-sans leading-3">
+                    {userInfo.name}
+                  </p>
+                  <p className="text-xs float-right font-sans font-normal text-black-base">
+                    {userInfo.email}
+                  </p>
+                </div>
+                <div className="relative">
+                  <AiOutlineUser
+                    className="rounded-2xl bg-gray-200"
+                    size={36}
+                  />
+                  <span className="bg-green-500 w-3 h-3 absolute rounded-lg  bottom-0 right-0 border-white border-2" />
+                </div>
+              </button>
+              <Menu
+                id="menu-appbar"
+                anchorEl={openMenu}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(openMenu)}
+                onClose={handleCloseMenu}
+              >
+                <MenuItem onClick={logout}>Logout</MenuItem>
+              </Menu>
+            </div>
           ) : (
             <div>
               <button
