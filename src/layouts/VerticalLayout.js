@@ -7,9 +7,15 @@ const VerticalLayout = () => {
   return (
     <div>
       <main className="min-h-screen container mx-auto p-4">
-        <Navbar />
-        <Outlet />
-        <Footer />
+        <div className="h-[6vh]">
+          <Navbar />
+        </div>
+        <div className="bg-white my-4 p-4 min-h-[80vh] rounded-md shadow-all">
+          <Outlet />
+        </div>
+        <div className="h-[6vh]">
+          <Footer />
+        </div>
       </main>
     </div>
   );
