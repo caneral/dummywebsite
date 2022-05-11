@@ -9,6 +9,7 @@ It is a dummy web application developed with ReactJS.
 
 ## Installation
 
+```bash
 
 # If you use npm:
 
@@ -18,6 +19,17 @@ npm install
 
 npm start
 
+  
+
+# Or if you use Yarn:
+
+yarn
+
+# and
+
+yarn start
+
+```
   
 
 # Or if you use Yarn:
