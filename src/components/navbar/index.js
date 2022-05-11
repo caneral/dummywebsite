@@ -145,7 +145,7 @@ const Navbar = () => {
                 onClick={handleOpen}
                 className="py-2 px-4 bg-green-300 text-white font-medium rounded-3xl flex w-28 justify-center hover:bg-green-200"
               >
-                Login
+                {t("Login")}
               </button>
               <Modal isOpen={open} toggle={handleClose}>
                 <ModalBody>
