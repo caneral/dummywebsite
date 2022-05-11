@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import VerticalForm from "../../components/form/VerticalForm";
 import Select from "react-select";
@@ -22,15 +22,21 @@ const ContactUs = () => {
 
   const store = useSelector((state) => state.auth);
   const userInfo = store.data;
-
   const {
     register,
     handleSubmit,
     watch,
     control,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onBlur" });
+  useEffect(() => {
+    if (userInfo) {
+      setValue("name", userInfo.name)
+      setValue("email", userInfo.email)
 
+    }
+  }, [userInfo]);
   const onSubmit = (data) => {
     const formData = {
       name: data.name,
@@ -52,14 +58,12 @@ const ContactUs = () => {
             <VerticalForm
               errors={errors.name}
               title={t("Name")}
-              defaultValue={userInfo?.name}
               type={"text"}
               hookform={{ ...register("name", { required: true }) }}
             />
             <VerticalForm
               errors={errors.email}
               title={t("Email")}
-              defaultValue={userInfo?.email}
               hookform={{
                 ...register("email", {
                   required: true,
@@ -82,7 +86,12 @@ const ContactUs = () => {
                 defaultValue=""
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <Select {...field} className="pt-1" options={countryList} placeholder={t("Select_Country")} />
+                  <Select
+                    {...field}
+                    className="pt-1"
+                    options={countryList}
+                    placeholder={t("Select_Country")}
+                  />
                 )}
               />
               {errors.country && (
