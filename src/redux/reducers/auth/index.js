@@ -1,10 +1,10 @@
 const initialState = {
-  data: [],
+  data: [{username:'caneral', password: "adasd"}],
   loading: false,
   error: "",
 };
 
-const general = (state = initialState, action) => {
+const auth = (state = initialState, action) => {
   switch (action.type) {
     case "EXAMPLE_CASE":
       return { ...state, data: action.data };
@@ -14,4 +14,4 @@ const general = (state = initialState, action) => {
   }
 };
 
-export default general;
+export default auth;
